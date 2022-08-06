@@ -1,4 +1,4 @@
-export interface IExchangeRates {
+export interface ExchangeRates {
   USD: number;
   JPY: number;
   BGN: number;
@@ -32,7 +32,7 @@ export interface IExchangeRates {
   ZAR: number;
 }
 
-export interface IExchangeRateResult {
+export interface ExchangeRateResult {
   time: string;
-  rates: IExchangeRates;
+  rates: ExchangeRates;
 }
