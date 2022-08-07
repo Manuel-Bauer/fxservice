@@ -36,3 +36,8 @@ export interface ExchangeRateResult {
   time: string;
   rates: ExchangeRates;
 }
+
+export interface Rate {
+  currency: string;
+  rate: number;
+}

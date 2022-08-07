@@ -19,7 +19,6 @@ function parse(string) {
     return __awaiter(this, void 0, void 0, function* () {
         const result = yield xml2js_1.default.parseStringPromise(string);
         const time = result['gesmes:Envelope']['Cube'][0]['Cube'][0]['$']['time'];
-        console.log(result['gesmes:Envelope']['Cube'][0]['Cube'][0]['Cube']);
         const ratesArray = result['gesmes:Envelope']['Cube'][0]['Cube'][0]['Cube'].map((rate) => rate['$']);
         const ratesObject = {};
         ratesArray.forEach((rate) => {

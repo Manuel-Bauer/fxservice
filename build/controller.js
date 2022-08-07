@@ -17,7 +17,10 @@ function getFxrates(req, res) {
             const rates = yield (0, api_1.fetchFxrates)();
             res.status(200).send(rates);
         }
-        finally {
+        catch (error) {
+            res.status(500).send({
+                error: 'Internal Server Error',
+            });
         }
     });
 }

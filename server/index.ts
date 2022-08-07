@@ -1,7 +1,6 @@
 import express from 'express';
 import cors from 'cors';
 import router from './router';
-import { getFxrates } from './controller';
 
 const PORT = process.env.PORT || 3000;
 

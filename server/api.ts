@@ -1,4 +1,4 @@
-import { ExchangeRateResult } from './types';
+import { ExchangeRateResult, Rate } from './types';
 import xml2js from 'xml2js';
 import axios from 'axios';
 
@@ -6,15 +6,13 @@ async function parse(string: string): Promise<ExchangeRateResult> {
   const result = await xml2js.parseStringPromise(string);
   const time = result['gesmes:Envelope']['Cube'][0]['Cube'][0]['$']['time'];
 
-  console.log(result['gesmes:Envelope']['Cube'][0]['Cube'][0]['Cube']);
-
   const ratesArray = result['gesmes:Envelope']['Cube'][0]['Cube'][0][
     'Cube'
-  ].map((rate: any) => rate['$']);
+  ].map((rate: { $: Rate }) => rate['$']);
 
   const ratesObject: any = {};
 
-  ratesArray.forEach((rate: any) => {
+  ratesArray.forEach((rate: Rate) => {
     ratesObject[rate.currency] = rate.rate;
   });
 
