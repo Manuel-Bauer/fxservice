@@ -11,4 +11,4 @@ const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
 app.use(router_1.default);
-app.listen(PORT, () => console.log(`The application is listening on port ${PORT}!`));
+app.listen(PORT, () => console.log(`The FX Service is running on ${PORT}!`));
