@@ -1,10 +1,10 @@
 import express from 'express';
-import { getAllFxrates } from './controller';
+import { getFxrates } from './controller';
 
 const Router = express.Router;
 // @ts-ignore
 const router = new Router();
 
-router.get('/fxrates', getAllFxrates);
+router.get('/fxrates', getFxrates);
 
 export default router;

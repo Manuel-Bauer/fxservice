@@ -8,5 +8,5 @@ const controller_1 = require("./controller");
 const Router = express_1.default.Router;
 // @ts-ignore
 const router = new Router();
-router.get('/fxrates', controller_1.getAllFxrates);
+router.get('/fxrates', controller_1.getFxrates);
 exports.default = router;

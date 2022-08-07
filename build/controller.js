@@ -8,35 +8,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAllFxrates = exports.parse = void 0;
-const axios_1 = __importDefault(require("axios"));
-const xml2js_1 = __importDefault(require("xml2js"));
-function parse(string) {
+exports.getFxrates = void 0;
+const api_1 = require("./api");
+function getFxrates(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
-        const result = yield xml2js_1.default.parseStringPromise(string);
-        const time = result['gesmes:Envelope']['Cube'][0]['Cube'][0]['$']['time'];
-        const ratesArray = result['gesmes:Envelope']['Cube'][0]['Cube'][0]['Cube'].map((rate) => rate['$']);
-        const ratesObject = {};
-        ratesArray.forEach((rate) => {
-            ratesObject[rate.currency] = rate.rate;
-        });
-        const data = {
-            time: time,
-            rates: ratesObject,
-        };
-        return data;
+        try {
+            const rates = yield (0, api_1.fetchFxrates)();
+            res.status(200).send(rates);
+        }
+        finally {
+        }
     });
 }
-exports.parse = parse;
-function getAllFxrates() {
-    return __awaiter(this, void 0, void 0, function* () {
-        const result = yield axios_1.default.get('http://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml');
-        const rates = parse(result.data);
-        return rates;
-    });
-}
-exports.getAllFxrates = getAllFxrates;
+exports.getFxrates = getFxrates;
